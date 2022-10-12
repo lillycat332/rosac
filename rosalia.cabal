@@ -2,24 +2,18 @@ cabal-version:      2.4
 name:               Rosalia
 version:            1.0.0.0
 
-
 synopsis:           Rosalia Compiler
-
-description:        Compiler for the Rosalia language (Haskell
-                    port)
-             
-             
-
-bug-reports:        https://github.com/lillycat332/
-homepage:           https://github.com/lillycat332/
-license:            BSD-3-Clause
+description:        Compiler for the Rosalia language 
+category:           Rosalia
+bug-reports:        https://github.com/lillycat332/rosac/issues
+homepage:           https://github.com/lillycat332/rosac
+license:            BSD-2-Clause
 license-file:       LICENSE
 stability:          experimental
 author:             Lilly Cham <lilly@lillycat.tech>
 maintainer:         Lilly Cham <lilly@lillycat.tech>
 
 copyright:          (c) 2022 Lilly Cham
-category:           Database
 extra-source-files: CHANGELOG.md
 
 library
@@ -27,21 +21,22 @@ library
     default-language: Haskell2010
     build-depends:    base ^>=4.16.2.0 
                     , megaparsec
+                    , text
 
-    exposed-modules:  Rosalia.Lexer
+    exposed-modules:  Rosalia.Parser
+                    , Rosalia.Log
 
     ghc-options: -Wall -O3
 
 executable rosalia
-    main-is:          Main.hs
-    build-depends:    base ^>=4.16.2.0
-                    , optparse-applicative
+    main-is:       Main.hs
+    build-depends: base ^>=4.16.2.0
+                 , optparse-applicative
+                 , Rosalia
+                 , text
 
-    other-modules:    Paths_Rosalia
+    other-modules: Paths_Rosalia
 
     ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N -O3
     hs-source-dirs:   app
     default-language: Haskell2010
-
-other-modules:
-    Paths_Rosalia
