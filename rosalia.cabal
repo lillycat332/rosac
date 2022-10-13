@@ -14,7 +14,6 @@ author:             Lilly Cham <lilly@lillycat.tech>
 maintainer:         Lilly Cham <lilly@lillycat.tech>
 
 copyright:          (c) 2022 Lilly Cham
-extra-source-files: CHANGELOG.md
 
 library
     hs-source-dirs:   src
