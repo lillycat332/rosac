@@ -9,10 +9,9 @@ import Control.Monad (when)
 import Data.Text qualified as T
 import Data.Version (showVersion)
 import Options.Applicative
-import Options.Applicative.Common (runParser)
-import Paths_Rosalia (version)
+import Paths_rosalia (version)
 import Rosalia.Log (crashAndBurn, logInfo, logVerbose)
-import Rosalia.Parser (parseProgram)
+import Rosalia.Parser (programParser, runParser)
 
 data Options = Options
   { optFile :: String,
@@ -52,22 +51,21 @@ options =
 
 runOpts :: Options -> IO ()
 runOpts (Options file output verbose warn) = do
-  let pTree = runParser parseProgram file
+  putStrLn ("\x1b[38;5;189mrosac - the rosalia compiler. version: " <> showVersion version <> "\x1b[0m")
+  when verbose $ logVerbose "Verbose output enabled"
+
+  fileC <- readFile file
+  let fileC' = T.pack fileC
+  when verbose $ logVerbose "Parsing..."
+  let pTree = runParser programParser file fileC'
   when verbose $ do
     logInfo "Parsing program"
-    logInfo $ T.pack $ show pTree
+    let tr = T.pack $ show pTree
+    logInfo ("Parse Tree: \n  " <> tr)
 
 main :: IO ()
 main = do
-  popts <- execParser opts
-  file <- readFile (optFile popts)
-
-  putStrLn ("\x1b[38;5;189mrosac - the rosalia compiler. version: " <> showVersion version <> "\x1b[0m")
-  when (optVerbose popts) $ logVerbose "Verbose output enabled"
-
-  let pTree = programParser optFile popts
-
-  crashAndBurn "encountered a widdle fucky wucky >_<"
+  runOpts =<< execParser opts
   where
     opts =
       info

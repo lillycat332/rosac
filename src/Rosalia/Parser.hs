@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Rosalia.Parser where
+module Rosalia.Parser (runParser, programParser) where
 
 import Control.Applicative (liftA2, liftA3)
 import Control.Monad.Combinators.Expr
@@ -52,7 +52,7 @@ declParser :: Parser RosaDecl
 declParser = do
   rword "let"
   name <- identifier
-  _ <- symbol "="
+  _ <- symbol ":="
   Let name <$> exprParser
 
 exprParser :: Parser RosaExpr
@@ -60,5 +60,5 @@ exprParser = makeExprParser termParser opTable
 
 programParser :: Parser Program
 programParser = between sc eof $ do
-  decls <- many declParser
-  return $ Program decls
+  exprs <- many exprParser
+  return $ Program exprs

@@ -59,4 +59,4 @@ data RosaDecl
   | Fun Text [Text] RosaExpr
   deriving (Show, Eq)
 
-data Program = Program [RosaDecl] deriving (Eq, Show)
+data Program = Program [RosaExpr] deriving (Eq, Show)

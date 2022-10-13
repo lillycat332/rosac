@@ -39,7 +39,7 @@ executable rosac
                  , rosalia
                  , text        
 
-    other-modules: Paths_Rosalia
+    other-modules: Paths_rosalia
 
     ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N -O3
     hs-source-dirs:   app
