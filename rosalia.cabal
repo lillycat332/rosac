@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               Rosalia
+name:               rosalia
 version:            1.0.0.0
 
 synopsis:           Rosalia Compiler
@@ -22,18 +22,22 @@ library
     build-depends:    base ^>=4.16.2.0 
                     , megaparsec
                     , text
+                    , string-conversions
+                    , parser-combinators
 
     exposed-modules:  Rosalia.Parser
                     , Rosalia.Log
+                    , Rosalia.AST
+                    , Rosalia.Scanner
 
     ghc-options: -Wall -O3
 
-executable rosalia
+executable rosac
     main-is:       Main.hs
     build-depends: base ^>=4.16.2.0
                  , optparse-applicative
-                 , Rosalia
-                 , text
+                 , rosalia
+                 , text        
 
     other-modules: Paths_Rosalia
 

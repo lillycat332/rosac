@@ -4,11 +4,15 @@
 module Main where
 
 -- import Data.Semigroup ((<>))
+
+import Control.Monad (when)
 import Data.Text qualified as T
 import Data.Version (showVersion)
 import Options.Applicative
+import Options.Applicative.Common (runParser)
 import Paths_Rosalia (version)
-import Rosalia.Log
+import Rosalia.Log (crashAndBurn, logInfo, logVerbose)
+import Rosalia.Parser (parseProgram)
 
 data Options = Options
   { optFile :: String,
@@ -46,18 +50,24 @@ options =
           <> help "Show more warnings for potentially incorrect code"
       )
 
+runOpts :: Options -> IO ()
+runOpts (Options file output verbose warn) = do
+  let pTree = runParser parseProgram file
+  when verbose $ do
+    logInfo "Parsing program"
+    logInfo $ T.pack $ show pTree
+
 main :: IO ()
 main = do
   popts <- execParser opts
   file <- readFile (optFile popts)
 
   putStrLn ("\x1b[38;5;189mrosac - the rosalia compiler. version: " <> showVersion version <> "\x1b[0m")
-  logErr "test error"
-  logWarn "test warning"
+  when (optVerbose popts) $ logVerbose "Verbose output enabled"
 
-  logInfo ("entering file: " <> T.pack (optFile popts))
+  let pTree = programParser optFile popts
 
-  crashAndBurn "HOW'S THIS FOR AN ERROR? HUH?"
+  crashAndBurn "encountered a widdle fucky wucky >_<"
   where
     opts =
       info

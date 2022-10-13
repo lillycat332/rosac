@@ -11,3 +11,6 @@ say = T.putStrLn
 
 exampleMain :: IO ()
 exampleMain = say "Hello, world!"
+
+eval :: a
+eval = error "You must be joking!"

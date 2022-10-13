@@ -1,0 +1,11 @@
+module Main where
+
+greet : IO ()
+greet := say greeting
+
+greeting : String
+greeting := "Hello from Rosalia!"
+
+-- The main function has a special type.
+main : EntryPoint
+main := greet >> exit
