@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Rosalia.Parser (runParser, programParser) where
+module Rosalia.Compiler.Backend.Parser (runParser, programParser) where
 
 import Control.Applicative (liftA2, liftA3)
 import Control.Monad.Combinators.Expr
@@ -12,8 +12,7 @@ import Text.Megaparsec.Char
 
 opTable :: [[Operator Parser RosaExpr]]
 opTable =
-  [ [ unary (Unary RNeg) "-"
-    ],
+  [ [unary (Unary RNeg) "-"],
     [infixR Pow "^"],
     [infixL Mul "*", infixL Div "/"],
     [infixL Add "+", infixL Sub "-"],

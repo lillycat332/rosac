@@ -10,8 +10,8 @@ import Data.Text qualified as T
 import Data.Version (showVersion)
 import Options.Applicative
 import Paths_rosalia (version)
-import Rosalia.Log (crashAndBurn, logInfo, logVerbose)
-import Rosalia.Parser (programParser, runParser)
+import Rosalia.Compiler.Backend.Log (crashAndBurn, logInfo, logVerbose)
+import Rosalia.Compiler.Backend.Parser (programParser, runParser)
 
 data Options = Options
   { optFile :: String,
@@ -59,9 +59,10 @@ runOpts (Options file output verbose warn) = do
   when verbose $ logVerbose "Parsing..."
   let pTree = runParser programParser file fileC'
   when verbose $ do
-    logInfo "Parsing program"
-    let tr = T.pack $ show pTree
-    logInfo ("Parse Tree: \n  " <> tr)
+    logVerbose "Parsing program"
+  case pTree of
+    Left err -> crashAndBurn $ T.pack $ show err
+    Right tr' -> logInfo ("Parsed:\n  " <> T.pack (show tr'))
 
 main :: IO ()
 main = do

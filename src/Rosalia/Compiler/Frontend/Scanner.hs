@@ -1,10 +1,7 @@
 {-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
-{-# HLINT ignore "Use newtype instead of data" #-}
-
-module Rosalia.Scanner where
+module Rosalia.Compiler.Backend.Scanner where
 
 import Control.Monad (void)
 import Data.Char (ord)

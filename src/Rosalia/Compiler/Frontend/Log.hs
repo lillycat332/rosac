@@ -1,7 +1,7 @@
 {-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Rosalia.Log where
+module Rosalia.Compiler.Backend.Log where
 
 import Data.Text qualified as T
 import Data.Text.IO qualified as T

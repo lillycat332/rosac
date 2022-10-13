@@ -1,1 +1,1 @@
-let main := 5
+let main := say "Hello world"
