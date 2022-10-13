@@ -3,20 +3,17 @@
 
 module Main where
 
--- import Data.Semigroup ((<>))
-
 import Control.Monad (when)
 import Data.Text qualified as T
 import Data.Version (showVersion)
 import Options.Applicative
 import Paths_rosalia (version)
-import Rosalia.Compiler.Backend.Log (crashAndBurn, logInfo, logVerbose)
-import Rosalia.Compiler.Backend.Parser (programParser, runParser)
+import Rosalia.Compiler.Frontend.Log (crashAndBurn, logInfo, logVerbose)
+import Rosalia.Compiler.Frontend.Parser (programParser, runParser)
 
 data Options = Options
   { optFile :: String,
     optOut :: String,
-    -- 	, optCmd :: Command
     optVerbose :: Bool,
     optWarn :: Bool
   }

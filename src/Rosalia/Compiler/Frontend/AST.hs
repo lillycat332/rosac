@@ -1,4 +1,4 @@
-module Rosalia.Compiler.Backend.AST where
+module Rosalia.Compiler.Frontend.AST where
 
 import Data.Text (Text)
 

@@ -1,7 +1,7 @@
 {-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Rosalia.Compiler.Backend.Scanner where
+module Rosalia.Compiler.Frontend.Scanner where
 
 import Control.Monad (void)
 import Data.Char (ord)

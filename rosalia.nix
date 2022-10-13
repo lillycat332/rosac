@@ -2,7 +2,6 @@
 , pkgs
 , base
 , lib
-, llvm-hs
 , megaparsec
 , optparse-applicative
 , parser-combinators
@@ -18,15 +17,14 @@ mkDerivation {
   isExecutable = true;
   libraryHaskellDepends = [
     base
-    llvm-hs
     megaparsec
     parser-combinators
     string-conversions
     text
   ];
-  buildDepends = [
-    pkgs.llvmPackages_13.llvm
-  ];
+  # buildDepends = [
+  #   pkgs.llvmPackages_13.llvm
+  # ];
   executableHaskellDepends = [ base optparse-applicative text ];
   homepage = "https://github.com/lillycat332/rosac";
   description = "Rosalia Compiler";

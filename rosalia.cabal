@@ -23,7 +23,6 @@ library
                     , text
                     , string-conversions
                     , parser-combinators
-                    , llvm-tf
 
     exposed-modules:  Rosalia.Compiler.Frontend.Parser
                     , Rosalia.Compiler.Frontend.Log

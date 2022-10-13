@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Rosalia.Compiler.Backend.Parser (runParser, programParser) where
+module Rosalia.Compiler.Frontend.Parser (runParser, programParser) where
 
 import Control.Applicative (liftA2, liftA3)
 import Control.Monad.Combinators.Expr
 import Data.Either
-import Rosalia.AST
-import Rosalia.Scanner
+import Rosalia.Compiler.Frontend.AST
+import Rosalia.Compiler.Frontend.Scanner
 import Text.Megaparsec
 import Text.Megaparsec.Char
 
